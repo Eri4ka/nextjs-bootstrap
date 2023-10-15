@@ -1,3 +1,4 @@
+import useSWR from 'swr';
 import Breadcrumbs from '@/components/breadcrumbs';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
@@ -11,17 +12,9 @@ import UserFilter from '@/components/user-filter';
 const breadcrumbs = [{ href: '/users', title: 'Пользователи', active: true }];
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
 
-  useEffect(() => {
-    setIsLoading(true);
-    getAllUsers(router.query)
-      .then((res) => setUsers(res))
-      .finally(() => setIsLoading(false));
-  }, [router.query]);
+  const { data: users, isLoading } = useSWR(router.query, getAllUsers);
 
   return (
     <Container>
