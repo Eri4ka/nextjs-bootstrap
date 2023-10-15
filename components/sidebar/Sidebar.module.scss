@@ -1,0 +1,17 @@
+.Sidebar {
+  width: 100px;
+  background-color: var(--bs-indigo);
+  transition: width 0.3s ease;
+
+  &_open {
+    width: 300px;
+  }
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+  }
+}
